@@ -1,0 +1,17 @@
+{
+	"flutter": {
+		"platforms": {
+			"dart": {
+				"lib/firebase_options.dart": {
+					"projectId": "to-do-117",
+					"configurations": {
+						"web": "1:320693473513:web:af5e069085e841da0f2078"
+					}
+				}
+			}
+		}
+	},
+	"firestore": {
+		"rules": "firestore.rules"
+	}
+}

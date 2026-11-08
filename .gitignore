@@ -1,0 +1,13 @@
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+/build/
+/coverage/
+/test_cache/
+/unit_test_assets/
+/doc/api/
+.idea/
+*.iml
+.DS_Store

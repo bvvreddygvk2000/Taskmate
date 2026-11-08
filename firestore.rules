@@ -1,0 +1,28 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId}/tasks/{taskId} {
+      function ownsTask() {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      allow read, delete: if ownsTask();
+      allow create, update: if ownsTask()
+        && request.resource.data.keys().hasAll([
+          'id', 'title', 'note', 'date', 'time', 'category', 'priority', 'done'
+        ])
+        && request.resource.data.keys().hasOnly([
+          'id', 'title', 'note', 'date', 'time', 'category', 'priority', 'done'
+        ])
+        && request.resource.data.id == taskId
+        && request.resource.data.title is string
+        && request.resource.data.note is string
+        && request.resource.data.date is string
+        && request.resource.data.time is string
+        && request.resource.data.category is string
+        && request.resource.data.priority is int
+        && request.resource.data.done is bool;
+    }
+  }
+}
